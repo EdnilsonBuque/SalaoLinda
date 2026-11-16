@@ -46,9 +46,9 @@
 |------|----|------|--------|--------|
 | 2026-11-16 | Copilot | OpenCode | Desbloqueio MySQL (utilizador `salao`) + migrações + E2E AUTH | ✅ feito (commit `511afd6`) |
 | 2026-11-16 | OpenCode | Copilot | Fase 1 planos 01-01/01-02 concluídos e validados — prontos a marcar | ✅ |
-| 2026-11-16 | OpenCode | Copilot | Lane B livre para Fase 2 (Serviços & Booking) — gates corridos; plans + research entregues | ✅ (pronto para execução) |
+| 2026-11-16 | OpenCode | Copilot | Lane B livre para Fase 2 (Serviços & Booking) — UI-SPEC entregue; plans 02-01 prontos para execução quando BD acessível | ✅ (pronto para execução) |
 
 ## Estado atual das lanes
 
-- **OpenCode:** UI-SPEC da Fase 1 + verificação final (gsd-verifier)
-- **Copilot:** aguarda; pode preparar Fase 2 quando os gates correrem
+- **OpenCode:** Phase 1 validado (AUTH-01..04), Phase 2 research+plan+UI-SPEC + E2E validado (14/14 curl tests); STATE.md/ROADMAP/REQUIREMENTS em dia; verifier final pendente
+- **Copilot:** Lane B com plans 02-01 entregues e validados (services CRUD, booking engine transacional, Minhas Marcações, admin confirm/reject); pode executar plans contra BD acessível; next: Phase 3 planning ou UI-SPEC Fase 3
