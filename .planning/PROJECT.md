@@ -28,8 +28,10 @@ O cliente marca o seu serviço no telemóvel sem espera confusa e a dona sabe no
 - [ ] Confirmar Marcação: admin confirma ou rejeita marcações
 - [ ] Avaliação: cliente dá nota e comentário depois do atendimento
 - [ ] Dashboard de ganhos do dia/semana para o admin
-- [ ] Fila/ordem de espera visível para reduzir espera confusa
+- [ ] Registo de clientes frequentes (lista + histórico visível ao admin)
 - [ ] Aplicação Android (APK) gerada com Capacitor
+
+*Nota: fila/posição de espera é v2 (QUEUE-01 em REQUIREMENTS.md) — depende do ciclo de estados estar sólido.*
 
 ### Out of Scope
 
@@ -51,17 +53,21 @@ O cliente marca o seu serviço no telemóvel sem espera confusa e a dona sabe no
 ## Constraints
 
 - **Tech stack**: Vue.js + Vuetify (frontend), Capacitor (APK Android), Node.js + Express + MySQL (backend/API), JavaScript/HTML/CSS — pedido explícito do utilizador
-- **Banco de dados**: MySQL — pedido explícito ("Bd: MySQL para um apk android")
-- **UI**: "lindo design" — interface cuidada, moderna, mobile-first
+- **Banco de dados**: MySQL 8.4 LTS — pedido explícito ("Bd: MySQL para um apk android"); dev local sem password (root via socket)
+- **Fuso horário do salão**: `Africa/Maputo` (confirmado pelo utilizador) — modelo wall-clock + IANA, datas `DATE`/`DATETIME` (não `TIMESTAMP`), `TZ` fixado no servidor
+- **UI**: "lindo design" — interface cuidada, moderna, mobile-first, em português
 - **Ambiente**: projeto greenfield, sem código existente
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Backend Node.js + Express + mysql2 (API REST) | Mesmo JavaScript do frontend; MySQL exige servidor além do APK; fácil de hospedar | — Pending |
+| Backend Node.js + Express 5 + MySQL (API REST) | Mesmo JavaScript do frontend; Express 5 dá error-handling assíncrono grátis; MySQL exige servidor além do APK | — Pending |
+| Knex 3.3 (migrations + queries parametrizadas) sobre mysql2 puro | Migrations desde a fase 1; Prisma 7 rejeitado (driver adapters obrigatórios, client gerado fora da árvore) | — Pending |
 | MySQL (não Supabase/Firebase) | Especificação do utilizador muda para MySQL no fim | — Pending |
-| Vue 3 + Vuetify + Capacitor | Pedido explícito; Vuetify dá design polido rápido | — Pending |
+| Vue 3.5 + Vuetify 4.3 + Vite + Capacitor 8 | Pedido explícito; scaffold com `npm create vuetify` (spreng Vite 8 quebra a cascade-layer do Vuetify 4) | — Pending |
+| Fuso `Africa/Maputo` wall-clock + DATETIME | Confirmado pelo utilizador; decisão de schema irreversível | — Pending |
+| Auth JWT simples (1 token ~14 dias, `@capacitor/preferences`) para MVP | Capacitor WebView é cross-origin (cookies complicados); refresh-rotation adiado para v1.x | — Pending |
 | Granularidade Coarse (3-5 fases) | Utilizador pediu rapidez até ao APK | — Pending |
 | Modo YOLO + verificação ligada | Execução rápida sem portões interativos, com plan-check e verificação de qualidade | — Pending |
 
