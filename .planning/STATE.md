@@ -11,15 +11,15 @@ See: .planning/PROJECT.md (updated 2026-11-16)
 
 Phase: 1 of 4 (Foundation — Scaffold, Schema & Auth)
 Plan: 2 of 2 in current phase
-Status: Implemented (código entregue); verificação DB/E2E bloqueada por acesso MySQL neste ambiente
-Last activity: 2026-11-16 — Fase 1 executada (01-01, 01-02 implementados; web build e checks de sintaxe OK; migrations/E2E pendentes de credenciais DB válidas)
+Status: Implementado + E2E validado (AUTH-01..04 passam); pendente UI-SPEC e verificação final
+Last activity: 2026-11-16 — Desbloqueio MySQL (utilizador `salao`), migrações (5 tabelas), bootstrap admin, E2E AUTH 4/4 com API em :3001; commits `511afd6` + `c270a58`; coordenação com Copilot definida em COORDINATION.md
 
-Progress: [█████░░░░░] 45%
+Progress: [███████░░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0 (implementados, verificação E2E pendente)
+- Total plans completed: 2 (01-01, 01-02 — implementados e E2E validados 2026-11-16)
 - Average duration: –
 - Total execution time: ~1 sessão (esta execução)
 
@@ -27,10 +27,10 @@ Progress: [█████░░░░░] 45%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 1 | 2/2 implementados | – | – |
 
 **Recent Trend:**
-- Last 5 plans: (none)
+- Last 5 plans: 01-02, 01-01
 - Trend: N/A
 
 *Updated after each plan completion*
@@ -48,14 +48,16 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- Executar `api` migrations/bootstrap/admin e E2E AUTH-01..04 num ambiente com acesso MySQL 8.4 válido (local: root socket/sudo ou utilizador dedicado; Docker: `docker compose up -d`).
-- Confirmar UX de bootstrap admin (script vs seed) conforme ambiente (script `npm run bootstrap:admin` implementado).
+- ✅ Migrations/bootstrap/E2E AUTH — FEITO 2026-11-16 (utilizador dedicado `salao`/`salao123` em `api/.env`; BD `salao_linda`; ver 01-01/01-02 Verification).
+- UI-SPEC da Fase 1 (01-UI-SPEC.md) — em geração.
+- Verificação final da Fase 1 (gsd-verifier → VERIFICATION.md).
 - Manter guarda `VITE_API_BASE_URL` ao configurar builds Capacitor/API (Fase 4).
 
 ### Blockers/Concerns
 
-- **Ambiente atual:** MySQL 8.4 está ativo mas acesso `root@localhost`/TCP falha sem privilégios (auth_socket/sudo não disponível sem interação). `npm run migrate:latest` falhou com "Access denied"; criação de BD/migrations/bootstrap e testes E2E contra DB real não puderam ser concluídos aqui. Código e `docker-compose.yml` prontos.
+- ~~Acesso MySQL~~ **RESOLVIDO 2026-11-16**: root usa auth_socket → criado utilizador dedicado `salao` com privilégios só em `salao_linda`. `docker-compose.yml` fica como alternativa (Docker não instalado neste ambiente).
 - Fase 2 precisa de `--research-phase` no plan-phase (lock flavor FOR UPDATE vs GET_LOCK, granularidade dos slots) — ver research/SUMMARY.md.
+- **Coordenação multi-agente:** protocolo em `.planning/COORDINATION.md` — OpenCode (GSD gates/docs) ↔ Copilot (código `api/src`,`web/src`). Respeitar lanes antes de editar.
 
 ## Deferred Items
 
@@ -66,5 +68,6 @@ Recent decisions affecting current work:
 ## Session Continuity
 
 Last session: 2026-11-16
-Stopped at: Phase 1 implemented (01-01, 01-02). Verificações sem DB: `web` build OK, `api` syntax/checks OK, migrations definidas. Pendente: executar migrations/bootstrap e E2E AUTH em ambiente com acesso MySQL.
+Stopped at: Phase 1 — código completo, E2E AUTH-01..04 validado contra MySQL real (commit `511afd6`). Pendente: 01-UI-SPEC (em geração) e verificação final (gsd-verifier). Coordenação com Copilot ativa.
 Resume file: `.planning/phases/01-foundation-scaffold-schema-auth/01-02-PLAN.md`
+Coordination file: `.planning/COORDINATION.md` (ler antes de editar ficheiros partilhados)
