@@ -77,4 +77,30 @@
 
 | Requirement | Phase |
 |-------------|-------|
-| _(preenchido pela criação do roadmap)_ | |
+| AUTH-01 | Phase 1 |
+| AUTH-02 | Phase 1 |
+| AUTH-03 | Phase 1 |
+| AUTH-04 | Phase 1 |
+| SERV-01 | Phase 2 |
+| SERV-02 | Phase 2 |
+| SERV-03 | Phase 2 |
+| SERV-04 | Phase 2 |
+| BOOK-01 | Phase 2 |
+| BOOK-02 | Phase 2 |
+| BOOK-03 | Phase 2 |
+| BOOK-04 | Phase 2 |
+| APPT-01 | Phase 2 |
+| APPT-02 | Phase 2 |
+| APPT-03 | Phase 2 |
+| ADM-01 | Phase 2 |
+| ADM-02 | Phase 3 |
+| ADM-03 | Phase 3 |
+| ADM-04 | Phase 3 |
+| ADM-05 | Phase 3 |
+| RATE-01 | Phase 3 |
+| RATE-02 | Phase 3 |
+| RATE-03 | Phase 3 |
+| MOB-01 | Phase 4 |
+| MOB-02 | Phase 4 |
+
+**Coverage:** 25/25 v1 requirements mapped — no orphans, no duplicates.
