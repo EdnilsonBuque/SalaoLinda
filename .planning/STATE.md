@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-11-16)
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation — Scaffold, Schema & Auth)
-Plan: 2 of 2 in current phase
-Status: Implementado + E2E validado (AUTH-01..04 passam); pendente UI-SPEC e verificação final
-Last activity: 2026-11-16 — Desbloqueio MySQL (utilizador `salao`), migrações (5 tabelas), bootstrap admin, E2E AUTH 4/4 com API em :3001; commits `511afd6` + `c270a58`; coordenação com Copilot definida em COORDINATION.md
+Phase: 2 of 4 (Services & Booking Core)
+Plan: 1 of TBD in current phase
+Status: Research + plan delivered (02-RESEARCH.md + 02-01-PLAN.md); E2E pendente de DB migrations/boot neste ambiente
+Last activity: 2026-11-16 — Fase 2 research + plano 02-01 entregues (services CRUD, booking engine transacional, Minhas Marcações, admin confirm/reject); coords com Copilot em `.planning/COORDINATION.md`
 
-Progress: [███████░░░] 75%
+Progress: [████████░░] 85%
 
 ## Performance Metrics
 

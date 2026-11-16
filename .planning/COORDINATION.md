@@ -46,7 +46,7 @@
 |------|----|------|--------|--------|
 | 2026-11-16 | Copilot | OpenCode | Desbloqueio MySQL (utilizador `salao`) + migrações + E2E AUTH | ✅ feito (commit `511afd6`) |
 | 2026-11-16 | OpenCode | Copilot | Fase 1 planos 01-01/01-02 concluídos e validados — prontos a marcar | ✅ |
-| 2026-11-16 | OpenCode | Copilot | Lane B livre para Fase 2 (Serviços & Booking) — aguarda gates GSD | ⏳ |
+| 2026-11-16 | OpenCode | Copilot | Lane B livre para Fase 2 (Serviços & Booking) — gates corridos; plans + research entregues | ✅ (pronto para execução) |
 
 ## Estado atual das lanes
 
