@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-11-16)
 ## Current Position
 
 Phase: 1 of 4 (Foundation — Scaffold, Schema & Auth)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-11-16 — ROADMAP.md created (4 phases, 25/25 v1 requirements mapped)
+Plan: 2 of 2 in current phase
+Status: Implemented (código entregue); verificação DB/E2E bloqueada por acesso MySQL neste ambiente
+Last activity: 2026-11-16 — Fase 1 executada (01-01, 01-02 implementados; web build e checks de sintaxe OK; migrations/E2E pendentes de credenciais DB válidas)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█████░░░░░] 45%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
+- Total plans completed: 0 (implementados, verificação E2E pendente)
 - Average duration: –
-- Total execution time: 0 hours
+- Total execution time: ~1 sessão (esta execução)
 
 **By Phase:**
 
@@ -48,10 +48,13 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- Executar `api` migrations/bootstrap/admin e E2E AUTH-01..04 num ambiente com acesso MySQL 8.4 válido (local: root socket/sudo ou utilizador dedicado; Docker: `docker compose up -d`).
+- Confirmar UX de bootstrap admin (script vs seed) conforme ambiente (script `npm run bootstrap:admin` implementado).
+- Manter guarda `VITE_API_BASE_URL` ao configurar builds Capacitor/API (Fase 4).
 
 ### Blockers/Concerns
 
+- **Ambiente atual:** MySQL 8.4 está ativo mas acesso `root@localhost`/TCP falha sem privilégios (auth_socket/sudo não disponível sem interação). `npm run migrate:latest` falhou com "Access denied"; criação de BD/migrations/bootstrap e testes E2E contra DB real não puderam ser concluídos aqui. Código e `docker-compose.yml` prontos.
 - Fase 2 precisa de `--research-phase` no plan-phase (lock flavor FOR UPDATE vs GET_LOCK, granularidade dos slots) — ver research/SUMMARY.md.
 
 ## Deferred Items
@@ -63,5 +66,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-11-16
-Stopped at: Roadmap created — à espera de aprovação → `/gsd-plan-phase 1`
-Resume file: None
+Stopped at: Phase 1 implemented (01-01, 01-02). Verificações sem DB: `web` build OK, `api` syntax/checks OK, migrations definidas. Pendente: executar migrations/bootstrap e E2E AUTH em ambiente com acesso MySQL.
+Resume file: `.planning/phases/01-foundation-scaffold-schema-auth/01-02-PLAN.md`
