@@ -14,6 +14,7 @@ O percurso vai da fundação ao APK: primeiro o esqueleto (scaffold Vue 3 + Vuet
 - [ ] **Phase 2: Services & Booking Core** - Catálogo CRUD, motor de disponibilidade sem colisões, ciclo de estados, Minhas Marcações e caixa de aprovação do admin
 - [ ] **Phase 3: Dashboard, Ratings & Client History** - Agenda de hoje, ganhos dia/semana, ranking de serviços, histórico de clientes e avaliações
 - [ ] **Phase 4: Android APK Packaging** - APK Capacitor instalável e verificação em telemóvel físico
+- [ ] **Phase 5: Especialistas e Pagamentos (aprovacao + deposito 50%)** - Roteamento serviço→especialista, aprovação pelo especialista, validação por depósito de 50% (sandbox mobile money) e restante pago no salão
 
 ## Phase Details
 
@@ -70,10 +71,25 @@ O percurso vai da fundação ao APK: primeiro o esqueleto (scaffold Vue 3 + Vuet
 **Plans**: TBD
 **UI hint**: yes
 
+### Phase 5: Especialistas e Pagamentos (aprovacao + deposito 50%)
+**Goal**: Cada marcação é roteada ao seu especialista (cabeleireiro ou manicurista), aprovada por ele, e só fica válida após depósito de 50% via sandbox de mobile money — com o restante cobrado e registado no salão
+**Mode:** mvp
+**Depends on**: Phase 4
+**Requirements**: SPEC-01, SPEC-02, SPEC-03, SPEC-04, PAY-01, PAY-02, PAY-03, PAY-04
+**Success Criteria** (what must be TRUE):
+  1. Cada serviço tem um especialista configurado; ao cliente escolher um serviço, a marcação aparece SÓ na caixa de aprovação desse especialista — o outro especialista nunca a vê
+  2. O especialista entra com login próprio, aprova ou rejeita (com motivo opcional) as suas marcações; a dona (admin) vê todas as marcações de ambos
+  3. Aprovada pela especialista, a marcação fica "à espera do depósito de 50%" com prazo visível; se o prazo expira sem pagamento, o horário volta a ficar livre e o estado passa a expirada
+  4. O depósito de 50% é pago por fluxo de mobile money em sandbox (prompt no telemóvel → confirmação com PIN → confirmação recebida) e só então a marcação fica confirmada/valida — pagamento falhado ou expirado nunca valida a marcação
+  5. A verificação de conflitos de horário é por especialista: corte (cabeleireiro) e manicure (manicurista) podem acontecer às 10:00 em paralelo, mas dois cortes às 10:00 nunca coexistem
+  6. Após o atendimento, a admin marca o restante 50% como pago ao balcão; a marcação concluída distingue depósito recebido, restante recebido e total
+**Plans**: TBD
+**UI hint**: yes
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -81,3 +97,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 2. Services & Booking Core | 0/TBD | Not started | - |
 | 3. Dashboard, Ratings & Client History | 0/TBD | Not started | - |
 | 4. Android APK Packaging | 0/TBD | Not started | - |
+| 5. Especialistas e Pagamentos (aprovacao + deposito 50%) | 0/TBD | Not started | - |

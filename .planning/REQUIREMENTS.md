@@ -35,7 +35,7 @@
 
 ### Gestão do salão — Admin (ADM)
 
-- [ ] **ADM-01**: Admin vê as marcações pendentes e confirma ou rejeita cada uma (rejeição opcionalmente com motivo curto)
+- [ ] **ADM-01**: Admin vê as marcações pendentes e confirma ou rejeita cada uma (rejeição opcionalmente com motivo curto) — *rev. 2026-11-18: com a Fase 5 a aprovação é do especialista dono do serviço (SPEC-03); o admin mantém visibilidade total*
 - [ ] **ADM-02**: Admin vê o horário do dia (agenda de hoje) com todos os estados
 - [ ] **ADM-03**: Admin vê os ganhos do dia e da semana (soma das marcações concluídas, com o preço registado na marcação)
 - [ ] **ADM-04**: Admin vê os serviços mais procurados (ranking por número de marcações/conclusões)
@@ -52,6 +52,25 @@
 - [ ] **MOB-01**: APK Android instalável gerado com Capacitor
 - [ ] **MOB-02**: Interface mobile-first em português (telas, cartões, botões, calendário) com design cuidado
 
+## Novos Requirements — Especialistas & Pagamentos (2026-11-18)
+
+> Origem: `/gsd-explore` — 2 especialistas (cabeleireiro + manicurista), aprovação pelo especialista, validação por depósito de 50%.
+> **Supera parcialmente ADM-01**: a aprovação passa a ser do especialista dono do serviço (o admin continua com visibilidade total).
+
+### Especialistas (SPEC)
+
+- [ ] **SPEC-01**: Cada serviço tem um especialista configurado (cabeleireiro ou manicurista/pedicurista) e a marcação encaminha-se automaticamente para esse especialista
+- [ ] **SPEC-02**: O especialista tem login próprio (role "especialista") e vê na sua caixa de aprovação apenas as marcações dos serviços que lhe pertencem
+- [ ] **SPEC-03**: O especialista aprova ou rejeita cada marcação sua (rejeição opcionalmente com motivo); o admin (dona) vê todas as marcações de todos os especialistas
+- [ ] **SPEC-04**: Os dois especialistas trabalham o mesmo horário (seg–sáb, 09:00–18:00) em paralelo — a verificação de conflitos de horário é feita por especialista, nunca por salão
+
+### Pagamentos (PAY)
+
+- [ ] **PAY-01**: A marcação só é válida (estado confirmada) depois de o cliente pagar 50% do valor do serviço
+- [ ] **PAY-02**: Depois de aprovada pelo especialista, a marcação fica "à espera do depósito" até um prazo definido; sem pagamento nesse prazo, expira e o horário volta a ficar livre
+- [ ] **PAY-03**: O restante 50% é pago presencialmente no salão; o admin regista o recebimento e a marcação concluída distingue depósito, restante e total
+- [ ] **PAY-04**: O pagamento segue um fluxo de mobile money em sandbox (descrição → prompt de pagamento → confirmação com PIN → callback de sucesso/fracasso), abstraído atrás de uma interface de gateway para permitir trocar pelo M-Pesa real depois
+
 ## v2 Requirements (adiados)
 
 - [ ] **APPT-04**: Cliente altera (reagenda) uma marcação em vez de apenas cancelar
@@ -62,7 +81,7 @@
 
 ## Out of Scope
 
-- Pagamentos online / depósitos / taxas de não-comparação — o salão recebe presencialmente; regista-se apenas o valor faturado
+- ~~Pagamentos online / depósitos~~ — **revogado em 2026-11-18**: o depósito de 50% via sandbox mobile money entrou no âmbito (PAY-01..04); taxas de não-comparação continuam fora de âmbito
 - Marketplace / perfil público do salão / descoberta — salão único, sem comissões nem complexidade de marketplace
 - Chat / mensagens em tempo real — o estado da marcação + motivo curto de rejeição cobrem a comunicação
 - Kiosk de walk-in / TV de fila / QR check-in — hardware desnecessário para o volume do salão
@@ -102,5 +121,13 @@
 | RATE-03 | Phase 3 |
 | MOB-01 | Phase 4 |
 | MOB-02 | Phase 4 |
+| SPEC-01 | Phase 5 |
+| SPEC-02 | Phase 5 |
+| SPEC-03 | Phase 5 |
+| SPEC-04 | Phase 5 |
+| PAY-01 | Phase 5 |
+| PAY-02 | Phase 5 |
+| PAY-03 | Phase 5 |
+| PAY-04 | Phase 5 |
 
-**Coverage:** 25/25 v1 requirements mapped — no orphans, no duplicates.
+**Coverage:** 33/33 v1+novos requirements mapped — no orphans, no duplicates.

@@ -38,6 +38,10 @@ Progress: [██████████] 100%
 
 ## Accumulated Context
 
+### Roadmap Evolution
+
+- Phase 5 added: Especialistas e Pagamentos (aprovacao + deposito 50%) — 2026-11-18, via `/gsd-explore`: roteamento serviço→especialista, aprovação pelo especialista, validação por depósito de 50% (sandbox mobile money), restante cobrado no salão. Novos requirements SPEC-01..04 + PAY-01..04; Out of Scope de pagamentos revogado.
+
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
@@ -77,4 +81,4 @@ Last session: 2026-11-16
 Stopped at: All phases complete — codebase implementado, E2E validado, docs comprometidos, coordenação definida.
 Resume file: N/A — projeto finalizado nesta sessão.
 Coordination file: `.planning/COORDINATION.md` (ler antes de editar ficheiros partilhados em futuros projetos)
-Roadmap file: `.planning/ROADMAP.md` (4 fases concluídas; próximo: Fase 3 opcional ou manutenção)
+Roadmap file: `.planning/ROADMAP.md` (5 fases; Fases 1–4 entregues; próxima: **Fase 5 — Especialistas e Pagamentos**, correr `/gsd-plan-phase 5`)
