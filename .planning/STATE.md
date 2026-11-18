@@ -82,3 +82,11 @@ Stopped at: All phases complete — codebase implementado, E2E validado, docs co
 Resume file: N/A — projeto finalizado nesta sessão.
 Coordination file: `.planning/COORDINATION.md` (ler antes de editar ficheiros partilhados em futuros projetos)
 Roadmap file: `.planning/ROADMAP.md` (5 fases; Fases 1–4 entregues; próxima: **Fase 5 — Especialistas e Pagamentos**, correr `/gsd-plan-phase 5`)
+
+## Phase 05 Execution Update — 2026-11-18
+
+- Plan `05-01` is implemented and verified: migrations, specialist bootstrap, service routing, booking specialist snapshot, and specialist-only appointment list.
+- Requirements completed by this plan: SPEC-01 and SPEC-02.
+- Local MySQL migration status: all three `20261118000*` migrations are Done; rollback and reapply passed.
+- Dedicated specialist HTTP integration passed. Full gated suite still has the known baseline 404 for `/api/admin/users/:id/appointments` in `booking.integration.test.js`.
+- Next: continue with the remaining Phase 05 plans for specialist UI/approval and deposit/payment flows.

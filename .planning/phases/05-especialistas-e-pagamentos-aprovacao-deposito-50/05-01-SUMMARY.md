@@ -74,7 +74,7 @@ completed: 2026-11-18
 
 1. **Tasks 1–3: Specialist schema, service routing, and inbox** — `894bac6` (`feat(05): add specialist routing and appointment inbox`)
 
-**Plan metadata:** pending summary/roadmap commit.
+**Plan metadata:** summary committed as `fc847bc`; project state and roadmap update follow in a separate docs commit.
 
 ## Files Created/Modified
 

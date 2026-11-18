@@ -83,7 +83,7 @@ O percurso vai da fundação ao APK: primeiro o esqueleto (scaffold Vue 3 + Vuet
   4. O depósito de 50% é pago por fluxo de mobile money em sandbox (prompt no telemóvel → confirmação com PIN → confirmação recebida) e só então a marcação fica confirmada/valida — pagamento falhado ou expirado nunca valida a marcação
   5. A verificação de conflitos de horário é por especialista: corte (cabeleireiro) e manicure (manicurista) podem acontecer às 10:00 em paralelo, mas dois cortes às 10:00 nunca coexistem
   6. Após o atendimento, a admin marca o restante 50% como pago ao balcão; a marcação concluída distingue depósito recebido, restante recebido e total
-**Plans**: TBD
+**Plans**: 1/5 — 05-01 (schema, service routing, specialist inbox) complete; remaining plans pending
 **UI hint**: yes
 
 ## Progress
@@ -97,4 +97,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Services & Booking Core | 0/TBD | Not started | - |
 | 3. Dashboard, Ratings & Client History | 0/TBD | Not started | - |
 | 4. Android APK Packaging | 0/TBD | Not started | - |
-| 5. Especialistas e Pagamentos (aprovacao + deposito 50%) | 0/TBD | Not started | - |
+| 5. Especialistas e Pagamentos (aprovacao + deposito 50%) | 1/5 | In progress | 2026-11-18 |
