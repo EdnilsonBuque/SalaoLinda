@@ -455,27 +455,33 @@ export async function listSpecialistAppointments(specialistId, { date = getSalon
 | A5 | "Visibilidade de depósito/restante no dashboard" (fase boundary) pode ser satisfeita nas listagens/detalhe de marcações, sem criar rotas de dashboard | Payments | Se o dashboard existir na fase 3 completa, acrescentar agregação — ver Open Questions #3 |
 | A6 | Semântica M-Pesa C2B (prompt→PIN→callback, sandbox `api.sandbox.vm.co.mz:18352`) conforme nota de exploração 2026-11-18 | Gateway | Apenas o MockGateway entra nesta fase; se a nota estiver errada, só o adaptador futuro é afectado |
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+> **RESOLVED: ver 05-CONTEXT.md «Decisões de abertura (2026-11-18)»** — as 4 questões abaixo estão decididas e implementadas nos planos 01–05.
 
 1. **O admin pode ainda aprovar marcações, ou a aprovação passa a ser exclusiva do especialista?**
    - What we know: CONTEXT.md diz "revoga **parcialmente** ADM-01"; success criteria #2 só exige que o especialista aprove e o admin veja tudo.
    - What's unclear: se o admin mantém o poder de aprovar (fallback para o dia em que o especialista não entra).
    - Recommendation: manter aprovação admin como fallback (menor mudança, alinha com "visão total"); specialist-only é um botão a remover depois. Marcar como decisão do discuss-phase.
+   - **RESOLVED:** aprovação **exclusiva do especialista** (fallback admin revogado — decisão de abertura); removida no Plano 03 (bypass `pendente → confirmada` eliminado, PAY-01).
 
 2. **Duração do prazo de depósito e valor exacto do PIN do mock.**
    - What we know: PAY-02 exige "prazo definido"; nenhum valor definido em lado nenhum.
    - What's unclear: minutos (30? 2h?) e se o PIN é fixo ou qualquer 4 dígitos.
    - Recommendation: env `DEPOSIT_DEADLINE_MINUTES=30` + PIN fixo `1234` documentado no `.env.example`; confirmar com o utilizador no discuss-phase.
+   - **RESOLVED:** `DEPOSIT_DEADLINE_MINUTES=30` (env, Plano 03) + PIN `1234` via `MOCK_PAYMENT_PIN` com default (Plano 04).
 
 3. **Dashboard: as rotas de dashboard não existem.**
    - What we know: `reportService.getAdminDashboard`/`listAdminClients` estão escritos mas não montados (`/api/admin/dashboard` → 404 verificado); `booking.integration.test.js` falha por causa disto; ADM-02..04/RATE são Fase 3 no traceability e o STATE.md diz fases completas.
    - What's unclear: se a Fase 3 ficou incompleta ou se o dashboard vive noutro sítio não detectado.
    - Recommendation: **fora do âmbito da Fase 5** excepto se o utilizador exigir "ganhos com visibilidade de depósito/restante" (fronteira da fase diz "apenas ganha visibilidade"). Tratar como gap da Fase 3 num `/gsd-quick`, não misturar aqui. Confirmar no discuss-phase.
+   - **RESOLVED:** dashboard **fora do âmbito da Fase 5** (decisão de abertura); visibilidade de depósito/restante vive nas listagens de marcações (Plano 05). Falha pré-existente do `booking.integration.test.js` documentada como baseline.
 
 4. **Baseline commit antes de começar.**
    - What we know: `git status` mostra ~40 ficheiros untracked/modified das fases 2-4 (código nunca commitado).
    - What's unclear: se o utilizador quer um commit de baseline pré-fase.
    - Recommendation: commit de baseline com prefixo da lane antes da primeira edição da fase (regra 3 da COORDINATION.md).
+   - **RESOLVED:** baseline commitado (`ef0c4c0` + `c120aec`) antes das edições da fase.
 
 ## Environment Availability
 
