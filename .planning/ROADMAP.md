@@ -83,7 +83,13 @@ O percurso vai da fundação ao APK: primeiro o esqueleto (scaffold Vue 3 + Vuet
   4. O depósito de 50% é pago por fluxo de mobile money em sandbox (prompt no telemóvel → confirmação com PIN → confirmação recebida) e só então a marcação fica confirmada/valida — pagamento falhado ou expirado nunca valida a marcação
   5. A verificação de conflitos de horário é por especialista: corte (cabeleireiro) e manicure (manicurista) podem acontecer às 10:00 em paralelo, mas dois cortes às 10:00 nunca coexistem
   6. Após o atendimento, a admin marca o restante 50% como pago ao balcão; a marcação concluída distingue depósito recebido, restante recebido e total
-**Plans**: 1/5 — 05-01 (schema, service routing, specialist inbox) complete; remaining plans pending
+**Plans**: 5/5 planos escritos · 1/5 executado (waves sequenciais 1→5)
+- Wave 1 — `05-01` (schema, RBAC, roteamento de especialistas) ✅ *executado*
+- Wave 2 *(blocked on Wave 1)* — `05-02` (interface do especialista: nav, inbox, formulário, chips)
+- Wave 3 *(blocked on Wave 2)* — `05-03` (aprovação pelo especialista, bypass PAY-01, conflitos por especialista)
+- Wave 4 *(blocked on Wave 3)* — `05-04` (depósito 50% gateway sandbox + folha de pagamento)
+- Wave 5 *(blocked on Wave 4)* — `05-05` (expiração lazy, restante 50%, E2E da fase)
+- Cross-cutting constraints: nenhum `must_haves.truths` partilhado por 2+ planos; todos os planos: sem pacotes novos, ESLint/testes sem regressão vs baseline
 **UI hint**: yes
 
 ## Progress
