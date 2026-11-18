@@ -69,7 +69,7 @@ Rules reaffirmed: no size <14px; currency (`1 200,00 MZN`), times (`HH:mm`) and 
 
 ## Color
 
-Unherited 60/30/10 contract unchanged:
+Inherited 60/30/10 contract unchanged:
 
 | Role | Value | Usage |
 |------|-------|-------|
