@@ -282,14 +282,24 @@ No third-party registry is declared for Phase 5. Any future declaration must run
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: FLAG
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved with FLAGs — 2026-11-18 (gsd-ui-checker)
+
+No BLOCK-level violations: all required surfaces for SPEC-01..04, PAY-01..04 and annotated ADM-01 have contracts; all 6 ROADMAP success criteria map to UI surfaces; locked 05-CONTEXT decisions (approval before payment, 50% deposit with visible expiry + prompt→PIN→callback, admin marks remaining, per-specialist conflicts, specialist own-bookings visibility, `especialista` role with own login/nav) are honored; design system stays consistent with 01/02 baselines (4 type roles, 4px scale, exhaustive accent list, core-Vuetify-only).
+
+Non-blocking FLAGs (recommended revisions — planning may proceed without them):
+1. **Copywriting — register mixed** in the payment flow: "Tenta outra vez" / "A tua marcação está confirmada. Vemos-te no salão!" (tu) vs "Salão Linda pede-lhe pagar" (você/lhe). Pick one register (match Phase 1 voice) and align §3 with the Copywriting Contract.
+2. **Copywriting — prompt body mismatch:** §3 step 1 renders "… — Depósito marcação {serviço}" while the Copywriting Contract says "… — depósito da marcação de {serviço}". Make the Copywriting Contract table authoritative and fix §3.
+3. **Copywriting — admin hint:** §5's "A aguarda do especialista" is ungrammatical and absent from the Copywriting Contract table. Correct to "À espera do especialista." and add the row.
+4. **Implementability — route undecided:** §3 declares the payment route as "/marcar/:serviceId/pagamento (or /pagamentos/:appointmentId)". Choose one route so router/guard work is unambiguous.
+5. **Typography wording:** §2 card date/time says "(Body 14, muted)" but Body = 16px in the type table; restate as "Label 14" (or Body 16) to avoid an off-scale hybrid during implementation.
+6. **Baseline divergence:** live theme `primary: #624650` supersedes 01-UI-SPEC's `#A63D62` (documented here). Annotate 01-UI-SPEC so the foundation contract doesn't contradict the implemented tokens.
 
 ---
 
