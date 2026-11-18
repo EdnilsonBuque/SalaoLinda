@@ -50,22 +50,14 @@ app.use(notFound)
 app.use(errorHandler)
 
 const PORT = env.PORT
-let server
-
-if (env.NODE_ENV === 'production') {
-  // Em produção: HTTPS obrigatório
+// Sempre usar HTTPS - o config.js do frontend exige HTTPS no Android
+  // E o Android 15 bloqueia tráfego cleartext por padrão.
   const sslOptions = {
     key: fs.readFileSync('/tmp/key.pem'),
     cert: fs.readFileSync('/tmp/cert.pem')
   }
-  server = https.createServer(sslOptions, app).listen(PORT, () => {
+  const server = https.createServer(sslOptions, app).listen(PORT, () => {
     console.log(`API segura (HTTPS) a correr em https://localhost:${PORT} (TZ salão: ${env.SALON_TZ})`)
   })
-} else {
-  // Em dev: HTTP para compatibilidade com o Vite dev server
-  server = http.createServer(app).listen(PORT, '0.0.0.0', () => {
-    console.log(`API (HTTP) a correr em http://0.0.0.0:${PORT} (TZ salão: ${env.SALON_TZ})`)
-  })
-}
 
 export default server

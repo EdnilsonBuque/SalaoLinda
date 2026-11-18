@@ -95,7 +95,7 @@ export async function getAvailability(serviceId, date, now = new Date()) {
   })
 }
 
-export async function createAppointment({ userId, serviceId, date, startTime }, now = new Date()) {
+export async function createAppointment({ userId, serviceId, date, startTime, depositPercentage = 0 }, now = new Date()) {
   const dateError = getDateTimeError(date, startTime, now)
   if (dateError) throw httpError(400, dateError)
 
@@ -126,22 +126,31 @@ export async function createAppointment({ userId, serviceId, date, startTime }, 
     }).find((available) => available.start === startTime)
     if (!slot) throw httpError(409, 'Este horário já não está disponível. Atualize os horários.')
 
-    const [id] = await trx('appointments').insert({
+    const depositDeadline = depositPercentage > 0
+      ? new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days from now
+      : null
+
+    const status = depositPercentage > 0 ? 'aguarda_deposito' : 'pendente'
+
+    const [appId] = await trx('appointments').insert({
       user_id: userId,
       service_id: service.id,
       specialist_id: service.specialist_id,
       starts_at: createWallClock(date, slot.start),
       ends_at: createWallClock(date, slot.end),
-      status: 'pendente',
+      status,
       price_at_booking: service.price,
       duration_at_booking: service.duration_minutes,
+      deposit_percentage: depositPercentage,
+      deposit_deadline: depositDeadline,
       created_at: bookingNow,
       updated_at: bookingNow,
     })
-    return id
+
+    return appId
   })
 
-  return mapAppointment(await appointmentQuery().where('a.id', appointmentId).first())
+  return mapAppointment(await appointmentQuery().where('a.id', appId).first())
 }
 
 export async function listClientAppointments(userId) {
