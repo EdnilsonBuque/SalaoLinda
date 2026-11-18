@@ -7,6 +7,7 @@ const serviceFields = {
   durationMinutes: z.coerce.number().int().min(5).max(720),
   imagePath: z.union([z.string().trim().url().max(500), z.literal(''), z.null()]).optional(),
   active: z.boolean().optional(),
+  specialistId: z.coerce.number().int().positive('Escolhe o especialista deste serviço'),
 }
 
 export const createServiceSchema = z.object(serviceFields)

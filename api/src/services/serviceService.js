@@ -11,6 +11,8 @@ function toService(row) {
     durationMinutes: row.duration_minutes,
     imagePath: row.image_path,
     active: Number(row.active) === 1,
+    specialistId: row.specialist_id ?? null,
+    specialistName: row.specialist_name ?? null,
   }
 }
 
@@ -22,22 +24,29 @@ function toDatabaseFields(values) {
   if (Object.hasOwn(values, 'durationMinutes')) fields.duration_minutes = values.durationMinutes
   if (Object.hasOwn(values, 'imagePath')) fields.image_path = values.imagePath || null
   if (Object.hasOwn(values, 'active')) fields.active = values.active
+  if (Object.hasOwn(values, 'specialistId')) fields.specialist_id = values.specialistId ?? null
   return fields
 }
 
+function serviceQuery(query = db) {
+  return query('services')
+    .leftJoin('users as sp', 'sp.id', 'services.specialist_id')
+    .select('services.*', 'sp.name as specialist_name')
+}
+
 export async function listPublicServices() {
-  const rows = await db('services').where({ active: true }).orderBy('name')
+  const rows = await serviceQuery().where({ 'services.active': true }).orderBy('services.name')
   return rows.map(toService)
 }
 
 export async function getPublicService(id) {
-  const row = await db('services').where({ id, active: true }).first()
+  const row = await serviceQuery().where({ 'services.id': id, 'services.active': true }).first()
   if (!row) throw httpError(404, 'Serviço não encontrado')
   return toService(row)
 }
 
 export async function listAdminServices() {
-  const rows = await db('services').orderBy('active', 'desc').orderBy('name')
+  const rows = await serviceQuery().orderBy('services.active', 'desc').orderBy('services.name')
   return rows.map(toService)
 }
 
@@ -49,7 +58,7 @@ export async function createService(values) {
     created_at: now,
     updated_at: now,
   })
-  return toService(await db('services').where({ id }).first())
+  return toService(await serviceQuery().where({ 'services.id': id }).first())
 }
 
 export async function updateService(id, values) {
@@ -57,7 +66,7 @@ export async function updateService(id, values) {
     .where({ id })
     .update({ ...toDatabaseFields(values), updated_at: new Date() })
   if (!updated) throw httpError(404, 'Serviço não encontrado')
-  return toService(await db('services').where({ id }).first())
+  return toService(await serviceQuery().where({ 'services.id': id }).first())
 }
 
 export async function deactivateService(id) {

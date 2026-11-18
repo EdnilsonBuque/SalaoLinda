@@ -46,6 +46,8 @@ test('booking, ownership, cancellation, and one-review rules work over HTTP', {
     })
     assert.equal(adminLogin.response.status, 200)
     const adminToken = adminLogin.data.accessToken
+    const specialist = await db('users').select('id').where({ role: 'especialista' }).first()
+    assert.ok(specialist, 'O teste requer um especialista de bootstrap')
 
     const phone = `99${Date.now()}`
     const registration = await request('/auth/register', {
@@ -63,6 +65,7 @@ test('booking, ownership, cancellation, and one-review rules work over HTTP', {
         description: 'Registo criado para teste de integração.',
         price: 250,
         durationMinutes: 30,
+        specialistId: specialist.id,
       }),
     })
     assert.equal(serviceResponse.response.status, 201)

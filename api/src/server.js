@@ -12,6 +12,7 @@ import adminRoutes from './routes/admin.routes.js'
 import adminServiceRoutes from './routes/adminService.routes.js'
 import adminAppointmentRoutes from './routes/adminAppointment.routes.js'
 import adminReviewRoutes from './routes/adminReview.routes.js'
+import specialistAppointmentRoutes from './routes/specialistAppointment.routes.js'
 import appointmentRoutes from './routes/appointment.routes.js'
 import serviceRoutes from './routes/service.routes.js'
 import { notFound, errorHandler } from './middleware/errorHandler.js'
@@ -43,6 +44,7 @@ app.use('/api/admin', adminRoutes)
 app.use('/api/admin/services', adminServiceRoutes)
 app.use('/api/admin/appointments', adminAppointmentRoutes)
 app.use('/api/admin/reviews', adminReviewRoutes)
+app.use('/api/specialist', specialistAppointmentRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

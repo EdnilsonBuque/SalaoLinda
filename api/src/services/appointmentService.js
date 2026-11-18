@@ -20,6 +20,7 @@ function toAppointment(row) {
     id: row.id,
     userId: row.user_id,
     serviceId: row.service_id,
+    specialistId: row.specialist_id,
     serviceName: row.service_name,
     serviceImage: row.service_image,
     startsAt: salonDateTimeToString(row.starts_at),
@@ -45,6 +46,7 @@ function appointmentQuery(query = db) {
       'a.id',
       'a.user_id',
       'a.service_id',
+      'a.specialist_id',
       'a.starts_at',
       'a.ends_at',
       'a.status',
@@ -113,6 +115,7 @@ export async function createAppointment({ userId, serviceId, date, startTime }, 
     const bookingNow = new Date()
     const service = await trx('services').where({ id: serviceId, active: true }).first()
     if (!service) throw httpError(404, 'Serviço não encontrado')
+    if (!service.specialist_id) throw httpError(400, 'Este serviço ainda não tem especialista configurado')
 
     const appointments = await getActiveBookingsForDay(trx, date)
     const slot = generateAvailableSlots({
@@ -126,6 +129,7 @@ export async function createAppointment({ userId, serviceId, date, startTime }, 
     const [id] = await trx('appointments').insert({
       user_id: userId,
       service_id: service.id,
+      specialist_id: service.specialist_id,
       starts_at: createWallClock(date, slot.start),
       ends_at: createWallClock(date, slot.end),
       status: 'pendente',
@@ -182,6 +186,21 @@ export async function listAdminAppointments({ date = getSalonDate(), status }) {
 
   const query = appointmentQuery()
     .where('a.starts_at', '>=', `${date} 00:00:00`)
+    .andWhere('a.starts_at', '<', `${nextDate} 00:00:00`)
+    .orderBy('a.starts_at', 'asc')
+  if (status) query.andWhere('a.status', status)
+  return (await query).map(mapAppointment)
+}
+
+export async function listSpecialistAppointments(specialistId, { date = getSalonDate(), status } = {}) {
+  if (!isValidSalonDate(date)) throw httpError(400, 'Data inválida')
+  const dateObject = new Date(`${date}T00:00:00Z`)
+  dateObject.setUTCDate(dateObject.getUTCDate() + 1)
+  const nextDate = dateObject.toISOString().slice(0, 10)
+
+  const query = appointmentQuery()
+    .where('a.specialist_id', specialistId)
+    .andWhere('a.starts_at', '>=', `${date} 00:00:00`)
     .andWhere('a.starts_at', '<', `${nextDate} 00:00:00`)
     .orderBy('a.starts_at', 'asc')
   if (status) query.andWhere('a.status', status)
