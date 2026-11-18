@@ -10,16 +10,11 @@ export const apiBaseUrl = String(baseUrl).replace(/\/$/, '')
 
 const parsedBaseUrl = new URL(apiBaseUrl)
 const isAndroidBuild = import.meta.env.MODE === 'android'
-const isLocalHost = ['localhost', '127.0.0.1', '0.0.0.0'].includes(parsedBaseUrl.hostname)
 
-// Allow HTTP for Android development using 10.0.2.2 (special Android address that routes to development host)
-// For production, require HTTPS; for development with 10.0.2.2, allow HTTP
-const isAndroidDevLocalhost = isAndroidBuild && parsedBaseUrl.hostname === '10.0.2.2'
+// No Android, sempre exige HTTPS. Sem exceções para 10.0.2.2.
+// O Android 15 bloqueia tráfego cleartext por padrão.
+const requiresHttps = isAndroidBuild
 
-// Apenas exige HTTPS se não for 10.0.2.2 (desenvolvimento Android local)
-// Se for 10.0.2.2, permite HTTP para desenvolvimento
-const requiresHttps = isAndroidBuild && !isAndroidDevLocalhost
-
-if ((isAndroidBuild || Capacitor.isNativePlatform()) && requiresHttps && (parsedBaseUrl.protocol !== 'https:' || isLocalHost)) {
+if ((isAndroidBuild || Capacitor.isNativePlatform()) && requiresHttps && (parsedBaseUrl.protocol !== 'https:' || ['localhost', '127.0.0.1', '0.0.0.0'].includes(parsedBaseUrl.hostname))) {
   throw new Error('A app Android exige uma API pública com HTTPS. Configure VITE_API_BASE_URL em web/.env.android.')
 }

@@ -1,0 +1,17 @@
+{
+  "appId": "mz.salaolinda.app",
+  "appName": "Salão Linda",
+  "webDir": "dist",
+  "icon": "src/assets/logo.png",
+  "android": {
+    "allowMixedContent": true,
+    "buildOptions": {
+      "releaseType": "APK"
+    }
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="480" viewBox="0 0 500 480" fill="none">
+  <defs>
+    <linearGradient id="mirror" x1="120" y1="62" x2="397" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF9"/>
+      <stop offset="1" stop-color="#E9D7DD"/>
+    </linearGradient>
+    <linearGradient id="dress" x1="211" y1="297" x2="331" y2="444" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A85F7A"/>
+      <stop offset="1" stop-color="#754158"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="185" y1="79" x2="334" y2="305" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55404A"/>
+      <stop offset="1" stop-color="#362A32"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="224" y1="150" x2="310" y2="266" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2C6AE"/>
+      <stop offset="1" stop-color="#D99D85"/>
+    </linearGradient>
+    <filter id="shadow" x="76" y="46" width="350" height="408" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
+  </defs>
+  <ellipse cx="267" cy="428" fill="#9C6478" fill-opacity=".12" rx="142" ry="15"/>
+  <circle cx="376" cy="104" r="32" fill="#fff" fill-opacity=".43"/>
+  <circle cx="117" cy="171" r="18" fill="#fff" fill-opacity=".42"/>
+  <path d="M367 69c5 11 8 19 18 24-10 5-13 13-18 24-5-11-8-19-18-24 10-5 13-13 18-24Z" fill="#C792A5" fill-opacity=".72"/>
+  <path d="M125 83c3 7 5 12 11 15-6 3-8 8-11 15-3-7-5-12-11-15 6-3 8-8 11-15Z" fill="#C792A5" fill-opacity=".56"/>
+  <ellipse cx="252" cy="261" fill="#563A47" fill-opacity=".13" rx="159" ry="166" filter="url(#shadow)"/>
+  <path d="M128 193c0-85 55-145 127-145 72 0 127 60 127 145v159c0 44-35 79-79 79H207c-44 0-79-35-79-79V193Z" fill="#D9B6C2"/>
+  <path d="M139 191c0-77 49-129 116-129s116 52 116 129v158c0 38-31 69-69 69h-94c-38 0-69-31-69-69V191Z" fill="url(#mirror)"/>
+  <path d="M166 347c11-58 52-95 90-95 38 0 79 37 90 95v57H166v-57Z" fill="#E8CBD3"/>
+  <path d="M198 179c0-39 27-69 61-69 34 0 61 30 61 69v27c0 40-27 71-61 71-34 0-61-31-61-71v-27Z" fill="url(#skin)"/>
+  <path d="M188 188c-6-64 25-112 73-112 54 0 83 44 73 111-8-10-15-23-18-38-11 16-39 28-93 30-7 0-16 4-24 9-4-1-8-1-11 0Z" fill="url(#hair)"/>
+  <path d="M197 174c-14 3-22 19-17 35 4 15 14 22 24 20l-7-55Z" fill="#DFAE99"/>
+  <path d="M322 174c14 3 22 19 17 35-4 15-14 22-24 20l7-55Z" fill="#DFAE99"/>
+  <path d="M226 196c7-5 14-5 21 0M271 196c7-5 14-5 21 0" stroke="#67464E" stroke-linecap="round" stroke-width="3"/>
+  <path d="M236 220c5 4 10 4 15 0M270 220c5 4 10 4 15 0" stroke="#704A50" stroke-linecap="round" stroke-width="2.5"/>
+  <path d="M255 208c-3 10-5 16-2 19 2 2 5 2 8 1" stroke="#C18175" stroke-linecap="round" stroke-width="2"/>
+  <path d="M247 238c7 5 15 5 22 0" stroke="#A95869" stroke-linecap="round" stroke-width="2.5"/>
+  <path d="M227 270c7 12 17 19 31 19 15 0 25-7 32-19v-14c-8 8-19 12-32 12-12 0-23-4-31-12v14Z" fill="#D69E88"/>
+  <path d="M207 282c13 20 30 31 51 31s38-11 51-31l41 36c-18 27-50 47-92 47s-74-20-92-47l41-36Z" fill="#F2DAD9"/>
+  <path d="M205 297c15 22 34 33 53 33 20 0 39-11 54-33 24 13 43 34 51 62l22 86H131l22-86c8-28 27-49 52-62Z" fill="url(#dress)"/>
+  <path d="M205 297c15 22 34 33 53 33 20 0 39-11 54-33l18 13c-19 28-44 43-72 43s-53-15-72-43l19-13Z" fill="#F1D9D9"/>
+  <path d="M166 339c-11 29-20 62-24 106h37l22-87-35-19ZM351 339c11 29 20 62 24 106h-37l-22-87 35-19Z" fill="#F0C3AC"/>
+  <path d="M180 445h-43M361 445h43" stroke="#BC8D92" stroke-linecap="round" stroke-width="5"/>
+  <path d="M126 270c-11 13-17 30-16 51M384 260c12 13 18 29 18 46" stroke="#89A88A" stroke-linecap="round" stroke-width="4"/>
+  <path d="M109 306c-17-9-24-20-23-34 18 4 28 13 31 28M400 301c17-9 24-20 23-34-18 4-28 13-31 28M115 286c-4-19-1-33 10-43 9 16 9 29 0 43M395 282c4-19 1-33-10-43-9 16-9 29 0 43" fill="#8BA98B" stroke="#7C9B7C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <circle cx="110" cy="335" r="5" fill="#C992A4"/>
+  <circle cx="400" cy="329" r="5" fill="#C992A4"/>
+</svg>

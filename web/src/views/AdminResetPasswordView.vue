@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-6">
+  <v-container class="salon-page">
     <v-row justify="center">
       <v-col cols="12" md="8" lg="6">
         <v-card rounded="lg" class="pa-4">

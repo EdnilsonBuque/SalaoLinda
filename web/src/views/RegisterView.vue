@@ -1,25 +1,70 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container class="auth-page d-flex align-center" fluid>
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card class="pa-4" elevation="2" rounded="lg">
-          <v-card-title class="text-h5 font-weight-bold text-center">Criar conta</v-card-title>
-          <v-card-subtitle class="text-center mb-2">Salão Linda</v-card-subtitle>
-          <v-card-text>
-            <v-alert v-if="error" type="error" variant="tonal" class="mb-4">{{ error }}</v-alert>
-            <v-form @submit.prevent="onSubmit">
-              <v-text-field v-model="name" label="Nome" prepend-inner-icon="mdi-account" :error-messages="fieldErrors.name" required />
-              <v-text-field v-model="phone" label="Contacto (telefone)" prepend-inner-icon="mdi-phone" :error-messages="fieldErrors.phone" required />
-              <v-text-field v-model="password" label="Palavra-passe" type="password" prepend-inner-icon="mdi-lock" :error-messages="fieldErrors.password" required />
-              <v-text-field v-model="confirm" label="Confirmar palavra-passe" type="password" prepend-inner-icon="mdi-lock-check" :error-messages="confirmError" required />
-              <v-btn :loading="loading" type="submit" color="primary" block size="large" class="mt-2">Registar</v-btn>
-            </v-form>
-          </v-card-text>
-          <v-card-actions class="justify-center">
-            <span>Já tem conta?</span>
-            <v-btn variant="text" color="primary" to="/login">Entrar</v-btn>
-          </v-card-actions>
+      <v-col cols="12" sm="10" md="5" lg="4">
+        <v-card class="salon-auth-card pa-5 pa-sm-7">
+          <div class="text-center mb-4">
+            <span class="auth-brand-mark"><v-icon icon="mdi-content-cut" size="22" /></span>
+            <p class="auth-kicker mb-2">Salão Linda</p>
+            <v-card-title class="justify-center pa-0 text-h4 font-weight-medium">Criar conta</v-card-title>
+            <v-card-subtitle class="mt-2">Aceda aos serviços e faça as suas marcações.</v-card-subtitle>
+          </div>
+
+          <v-alert v-if="error" type="error" variant="tonal" class="mb-4">{{ error }}</v-alert>
+
+          <v-form @submit.prevent="onSubmit">
+            <v-text-field
+              v-model="name"
+              label="Nome"
+              prepend-inner-icon="mdi-account"
+              :error-messages="fieldErrors.name"
+              variant="outlined"
+              required
+            />
+            <v-text-field
+              v-model="phone"
+              label="Contacto (telefone)"
+              prepend-inner-icon="mdi-phone"
+              :error-messages="fieldErrors.phone"
+              variant="outlined"
+              required
+            />
+            <v-text-field
+              v-model="password"
+              label="Palavra-passe"
+              type="password"
+              prepend-inner-icon="mdi-lock"
+              :error-messages="fieldErrors.password"
+              variant="outlined"
+              required
+            />
+            <v-text-field
+              v-model="confirm"
+              label="Confirmar palavra-passe"
+              type="password"
+              prepend-inner-icon="mdi-lock-check"
+              :error-messages="confirmError"
+              variant="outlined"
+              required
+            />
+            <v-btn
+              :loading="loading"
+              type="submit"
+              color="primary"
+              block
+              size="x-large"
+              class="mt-2"
+            >
+              <v-icon start>mdi-account-plus</v-icon>
+              Registar
+            </v-btn>
+          </v-form>
         </v-card>
+
+        <div class="text-center mt-4">
+          <span class="text-body-2 salon-muted">Já tem conta?</span>
+          <v-btn variant="text" color="primary" to="/login" class="ml-1">Entrar</v-btn>
+        </div>
       </v-col>
     </v-row>
   </v-container>

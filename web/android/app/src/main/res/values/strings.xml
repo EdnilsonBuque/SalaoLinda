@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Salão Linda</string>
+    <string name="title_activity_main">Salão Linda</string>
+    <string name="package_name">mz.salaolinda.app</string>
+    <string name="custom_url_scheme">mz.salaolinda.app</string>
+</resources>

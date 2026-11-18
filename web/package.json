@@ -21,6 +21,7 @@
     "vuetify": "^4.0.2"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
     "@vitejs/plugin-vue": "^6.0.5",
     "eslint": "^9.39.4",
     "eslint-config-vuetify": "^4.3.4",
