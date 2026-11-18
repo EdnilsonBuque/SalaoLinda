@@ -46,6 +46,12 @@ Esta fase transforma o modelo "dona decide tudo" num modelo de **2 especialistas
 - Os dois especialistas trabalham o **mesmo horário** (seg–sáb, 09:00–18:00) em **salas paralelas** (SPEC-04)
 - A verificação de conflitos de horário passa a ser **por especialista**: corte (cabeleireiro) e manicure às 10:00 coexistem; dois cortes às 10:00 nunca coexistem — incluindo sob pedidos simultâneos (guarda transaccional existente deve ser reforçada por `specialist_id`)
 
+### Decisões de abertura (2026-11-18, respondidas pelo utilizador)
+- **Aprovação: só o especialista** — o especialista dono do serviço é o único que aprova/rejeita; o admin (dona) tem apenas visibilidade total (leitura). ADM-01 fica **revogado para aprovação** (admin não tem botões de aprovar/rejeitar em `pendente`; leitura mantém-se). Resolve a ambiguidade "revoga parcialmente" da pesquisa.
+- **Depósito: prazo 30 min + PIN 1234** — prazo configurável por env (`DEPOSIT_DEADLINE_MINUTES=30`, proposto) sem recompilar; PIN fixo `1234` no simulador MockGateway (código de teste, documentado no UI-SPEC).
+- **Baseline commitada** — repo estava com ~40 ficheiros nunca commitados (código fases 2-4); commitado antes de planear (`ef0c4c0`/`c120aec`). `booking.integration.test.js` falha hoje por motivo pré-existente (rota `/admin/users/:id/appointments` nunca criada) — **não é regressão da Fase 5**; o plano deve tratar a baseline como está.
+- **Dashboard fora de âmbito** — as rotas `/api/admin/dashboard` não existem (gap aparente da Fase 3); a distinção depósito/restante/total do success criterion 6 vive nas listagens de marcações, não no dashboard. Não criar rotas de dashboard nesta fase.
+
 ### the agent's Discretion
 - Design físico do schema (tabela `payments`? colunas extra em `appointments`? enum de estados) — decisão do agente, desde que os estados acima sejam observáveis
 - Mecanismo de expiração (cron/job periódico vs. verificação lazy ao listar slots) — o agente escolhe, desde que o slot nunca fique bloqueado para lá do prazo

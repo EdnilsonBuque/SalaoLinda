@@ -35,7 +35,7 @@
 
 ### Gestão do salão — Admin (ADM)
 
-- [ ] **ADM-01**: Admin vê as marcações pendentes e confirma ou rejeita cada uma (rejeição opcionalmente com motivo curto) — *rev. 2026-11-18: com a Fase 5 a aprovação é do especialista dono do serviço (SPEC-03); o admin mantém visibilidade total*
+- [ ] **ADM-01**: ~~Admin vê as marcações pendentes e confirma ou rejeita cada uma~~ — *rev. 2026-11-18: **aprovação passa integralmente ao especialista** dono do serviço (SPEC-03); o admin mantém apenas visibilidade total (leitura), sem botões de aprovar/rejeitar. Rejeição com motivo curto mantém-se, agora pelo especialista.*
 - [ ] **ADM-02**: Admin vê o horário do dia (agenda de hoje) com todos os estados
 - [ ] **ADM-03**: Admin vê os ganhos do dia e da semana (soma das marcações concluídas, com o preço registado na marcação)
 - [ ] **ADM-04**: Admin vê os serviços mais procurados (ranking por número de marcações/conclusões)
